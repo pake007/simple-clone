@@ -1,0 +1,18 @@
+.simple_wrapper {
+  display: block;
+}
+.simple_wrapper .simple_label {
+  float: left;
+  margin-right: 20px;
+}
+.simple_wrapper .simple_plus, .simple_wrapper .simple_minus {
+  float: left;
+  cursor: pointer;
+  padding: 0 0.5em;
+}
+.simple_wrapper .left {
+  float: left;
+}
+.simple_wrapper .simple_clear {
+  clear: both;
+}
