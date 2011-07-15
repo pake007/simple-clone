@@ -83,8 +83,9 @@ $.fn.simple_clone = function(option){
 
   // ---------------------------- '+' button event ---------------------------------------------------------
   $("span.simple_plus").live("click", function(){
-    var wrapper_count = $(this).closest(".outer_simple_wrapper").find(".simple_wrapper").length;
-    var last_wrapper = $(".simple_wrapper").last();
+    var outer_wrapper = $(this).closest(".outer_simple_wrapper");
+    var wrapper_count = outer_wrapper.find(".simple_wrapper").length;
+    var last_wrapper = outer_wrapper.find(".simple_wrapper").last();
 
     // deal with '-' and '+' button
     var plus_button = last_wrapper.find(".simple_plus");
@@ -111,8 +112,8 @@ $.fn.simple_clone = function(option){
 
     // generate new label for cloned_wrapper
     cloned_wrapper.regenerate_label(current_wrapper_count);
-    
-    // clear some extra elements (eg: error messages) 
+
+    // clear some extra elements (eg: error messages)
     cloned_wrapper.find(".simple_plus").nextAll().each(function(){
       if(!$(this).hasClass("simple_clear")){
         $(this).remove();
@@ -122,7 +123,8 @@ $.fn.simple_clone = function(option){
 
   // ---------------------------- '-' button event ----------------------------------------------------------
   $("span.simple_minus").live("click", function(){
-    var wrapper_count = $(this).closest(".outer_simple_wrapper").find(".simple_wrapper").length;
+    var outer_wrapper = $(this).closest(".outer_simple_wrapper");
+    var wrapper_count = outer_wrapper.find(".simple_wrapper").length;
     // if you clicked the '-' of the last wrapper, later you will need to clone a new '+' button
     var need_clone_plus_button = false;
     if($(this).next(".simple_plus").length > 0){
@@ -133,7 +135,7 @@ $.fn.simple_clone = function(option){
 
     // make sure the new last wrapper has correct '-' and '+' button
     var remaining_wrapper_count = wrapper_count - 1;
-    var last_wrapper = $(".simple_wrapper").last();
+    var last_wrapper = outer_wrapper.find(".simple_wrapper").last();
     if(remaining_wrapper_count > 1) {
       if(need_clone_plus_button == true) {
         last_wrapper.find(".simple_minus").after(plus);
@@ -145,11 +147,11 @@ $.fn.simple_clone = function(option){
     }
 
     // regenerate id for all remaining wrapper
-    $(".simple_wrapper").each(function(i){
+    outer_wrapper.find(".simple_wrapper").each(function(i){
       $(this).regenerate_ids(i);
     });
 
-    $(".simple_wrapper").each(function(i){
+    outer_wrapper.find(".simple_wrapper").each(function(i){
       $(this).regenerate_label(i+1);
     });
   });
