@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>Simple Clone Demo</title>
+	<link href="simpleclone.css" rel="stylesheet" type="text/css" />
+	<style type="text/css">
+	</style>
+	<script src="jquery-1.4.4.min.js" type="text/javascript"></script>
+  <script src="simpleclone.js" type="text/javascript"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      // without label
+      $(".code_group").simple_clone();
+
+      //with label
+      $(".email_group").simple_clone({
+        label: "E-mail ",
+        label_colon: true
+      });
+    })
+  </script>
+</head>
+
+<body>
+  <h2>Click + or - to test Simple Clone</h2>
+  <br/>
+  <h3>You can simply clone element</h3>
+  <p>Input your coupon codes:</p>
+  <div class='code_group'>
+    <input id="code" name="user[codes][]" size="20" type="text" />
+  </div>
+  <br/>
+
+  <h3>You can also clone fields with ordered label, like below:</h3>
+  <div class='email_group'>
+    <input id="email" name="user[emails][]" size="30" type="email" />
+  </div>
+  <br/>
+</body>
+</html>
