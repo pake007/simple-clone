@@ -2,6 +2,8 @@
 
 Simple-clone is a very simple jQuery plugin which can clone jQuery element or remove the cloned elements, especially useful in a form.
 
+When you apply simple-clone on a jQurey element, simple-clone will create a '+' button behind it, you can click the '+' to duplicate a similar element on the new line, you can clone as many as you want. After the cloned elements, you can see a '-' button, clicking it will remove the cloned elements.
+
 ##Usage
 
 Copy simpleclone.js and simpleclone.css to your application folder, include them in your page, done. Don't forget to include jquery first!
@@ -34,6 +36,8 @@ Oh, you can also have options in simple_clone function, now the available option
         });
       });
     </script>
+
+Simple-clone provides a very simple css, you can easily customize youself, like setting the img for the '+' and '-' button.
 
 ## Contribution
 
