@@ -1,3 +1,5 @@
+(function($) {
+
 $.fn.simple_clone = function(option){
   var option = option || {};
 
@@ -158,3 +160,5 @@ $.fn.simple_clone = function(option){
 
 
 };
+
+})(jQuery);
