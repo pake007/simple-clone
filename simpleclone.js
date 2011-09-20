@@ -39,10 +39,18 @@ $.fn.simple_clone = function(option){
     e.after(plus);
   }
 
-  // append a initial number to elements id
+  // append a initial number to elements id, if options[:nested] true, also assign a initial number to the element name
   e.find("input, select").each(function(){
     var old_id = $(this).attr("id");
     $(this).attr("id", old_id+'_0');
+    if(option.nested == true) {
+      var old_name = $(this).attr("name");
+      var reg = /\[\w*\]/;
+      var match = reg.exec(old_name);
+      var insert_position = match.index + match[0].length;
+      var new_name = old_name.substr(0, insert_position) + "[0]" + old_name.substr(insert_position);
+      $(this).attr("name", new_name);
+    }
   })
   // append a clear div
   e.parent().append(clear);
@@ -71,6 +79,17 @@ $.fn.simple_clone = function(option){
       var old_number_index = old_id.lastIndexOf(old_number);
       var new_id = old_id.substring(0,old_number_index) + "_" + number
       $(this).attr("id", new_id);
+    });
+  };
+  
+  // -------------------------- regenerate name of input and select inside the wrapper ----------------------
+  $.fn.regenerate_names = function(number){
+    $(this).find("input, select").each(function(){
+      var old_name = $(this).attr("name");
+      var old_number = old_name.match(/.*\[(\d+)\]/)[1];  // find the last match
+      var old_number_index = old_name.lastIndexOf(old_number);
+      var new_name = old_name.substring(0,old_number_index) + number + old_name.substring(old_number_index+1);
+      $(this).attr("name", new_name);
     });
   };
 
@@ -111,7 +130,12 @@ $.fn.simple_clone = function(option){
     // generate new id for input and select in cloned_wrapper
     var current_wrapper_count = wrapper_count + 1;
     cloned_wrapper.regenerate_ids(current_wrapper_count-1);
-
+    
+    // generate new name for input and select in cloned_wrapper if option[:nested] true
+    if(option.nested == true){
+      cloned_wrapper.regenerate_names(current_wrapper_count-1);
+    }
+    
     // generate new label for cloned_wrapper
     cloned_wrapper.regenerate_label(current_wrapper_count);
 
@@ -148,11 +172,19 @@ $.fn.simple_clone = function(option){
       last_wrapper.find(".simple_minus").replaceWith(plus);
     }
 
-    // regenerate id for all remaining wrapper
+    // regenerate ids for all remaining wrapper
     outer_wrapper.find(".simple_wrapper").each(function(i){
       $(this).regenerate_ids(i);
     });
-
+    
+    // regenerate name for all remaining wrapper
+    if(option.nested == true){
+      outer_wrapper.find(".simple_wrapper").each(function(i){
+        $(this).regenerate_names(i);
+      });
+    }
+    
+    // regenerate labels for all remaining wrapper
     outer_wrapper.find(".simple_wrapper").each(function(i){
       $(this).regenerate_label(i+1);
     });
