@@ -11,7 +11,7 @@ Copy simpleclone.js and simpleclone.css to your application folder, include them
 Then you can call simple clone function to make the html elements be able to cloned and removed.
 
 ### Basic
-To use that, make sure you have a div wrapped the elments, like:
+To use that, make sure you have a div wrapping the elments, like:
 
     <div class='email_group'>
       <input id='email' name='user[emails][]' size='30' type='email'></input>
@@ -50,7 +50,7 @@ Option :nested can allow you to build nested form, default is false. Example:
         nested: true
       });
 
-This will generate the input name like 'user[projects][0][name]', 'user[projects][1][name]' after you doing clone operation, which is useful for form posting with the has_many relationship.
+This will generate the input name like 'user[projects][0][name]', 'user[projects][1][name]' after you doing clone operation, which is useful for nested form with the has_many relationship.
       
 ### Customize
 Simple-clone provides a very simple css, you can easily customize youself, like setting the img for the '+' and '-' button.
