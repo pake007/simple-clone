@@ -18,14 +18,16 @@
       //with label
       $(".email_group").simple_clone({
         label: "E-mail ",
-        label_colon: true
+        label_colon: true,
+        start: 1
       });
 
       // with nested attributes
       $(".project_group").simple_clone({
         label: "Project Name ",
         label_colon: true,
-        nested: true
+        nested: true,
+        start: 1
       });
     })
   </script>

@@ -43,15 +43,17 @@ $.fn.simple_clone = function(option){
     e.after(plus);
   }
 
+  var startIndex = option.nested ? option.start || 0 : 0;
+
   // append a initial number to elements id, if options[:nested] true, also assign a initial number to the element name
   e.find("input, select").each(function(){
     var old_id = $(this).attr("id");
-    $(this).attr("id", old_id+'_0');
+    $(this).attr("id", old_id+'_' + startIndex);
     if(option.nested == true) {
       var old_name = $(this).attr("name");
       var reg = /\[\w*\]$/;
       var match = reg.exec(old_name);
-      var new_name = old_name.substr(0, match.index) + "[0]" + match[0];
+      var new_name = old_name.substr(0, match.index) + "[" + startIndex + "]" + match[0];
       $(this).attr("name", new_name);
     }
   })
@@ -132,11 +134,11 @@ $.fn.simple_clone = function(option){
 
     // generate new id for input and select in cloned_wrapper
     var current_wrapper_count = wrapper_count + 1;
-    cloned_wrapper.regenerate_ids(current_wrapper_count-1);
+    cloned_wrapper.regenerate_ids(current_wrapper_count-1+startIndex);
     
     // generate new name for input and select in cloned_wrapper if option[:nested] true
     if(option.nested == true){
-      cloned_wrapper.regenerate_names(current_wrapper_count-1);
+      cloned_wrapper.regenerate_names(current_wrapper_count-1+startIndex);
     }
     
     // generate new label for cloned_wrapper
@@ -181,13 +183,13 @@ $.fn.simple_clone = function(option){
 
     // regenerate ids for all remaining wrapper
     outer_wrapper.find(".simple_wrapper").each(function(i){
-      $(this).regenerate_ids(i);
+      $(this).regenerate_ids(i+startIndex);
     });
     
     // regenerate name for all remaining wrapper
     if(option.nested == true){
       outer_wrapper.find(".simple_wrapper").each(function(i){
-        $(this).regenerate_names(i);
+        $(this).regenerate_names(i+startIndex);
       });
     }
     
