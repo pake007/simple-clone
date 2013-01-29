@@ -106,7 +106,7 @@ $.fn.simple_clone = function(option){
   };
 
   // ---------------------------- '+' button event ---------------------------------------------------------
-  $("span.simple_plus").live("click", function(){
+  $("span.simple_plus").die("click").live("click", function(){
     var outer_wrapper = $(this).closest(".outer_simple_wrapper");
     var wrapper_count = outer_wrapper.find(".simple_wrapper").length;
     var last_wrapper = outer_wrapper.find(".simple_wrapper").last();
@@ -151,7 +151,7 @@ $.fn.simple_clone = function(option){
   });
 
   // ---------------------------- '-' button event ----------------------------------------------------------
-  $("span.simple_minus").live("click", function(){
+  $("span.simple_minus").die("click").live("click", function(){
     var outer_wrapper = $(this).closest(".outer_simple_wrapper");
     var wrapper_count = outer_wrapper.find(".simple_wrapper").length;
     // if you clicked the '-' of the last wrapper, later you will need to clone a new '+' button
