@@ -20,6 +20,13 @@
         label: "E-mail ",
         label_colon: true
       });
+
+      // with nested attributes
+      $(".project_group").simple_clone({
+        label: "Project Name ",
+        label_colon: true,
+        nested: true
+      });
     })
   </script>
 </head>
@@ -27,7 +34,7 @@
 <body>
   <h2>Click + or - to test Simple Clone</h2>
   <br/>
-  <h3>You can simply clone element</h3>
+  <h3>You can simply clone element:</h3>
   <p>Input your coupon codes:</p>
   <div class='code_group'>
     <input id="code" name="user[codes][]" size="20" type="text" />
@@ -37,6 +44,12 @@
   <h3>You can also clone fields with ordered label, like below:</h3>
   <div class='email_group'>
     <input id="email" name="user[emails][]" size="30" type="email" />
+  </div>
+  <br/>
+
+  <h3>You can generate nested attributes, which will generate input names like 'user[projects][0][name]', 'user[projects][1][name]'</h3>
+  <div class='project_group'>
+    <input id="user_projects_name" name="user[projects][name]" size="30" type="text" />
   </div>
   <br/>
 </body>
