@@ -55,6 +55,9 @@ This will generate the input name like 'user[projects][0][name]', 'user[projects
 ### Customize
 Simple-clone provides a very simple css, you can easily customize youself, like setting the img for the '+' and '-' button.
 
+## TODO
+Resolve the option polution problem if multiple groups have been simple-cloned in one page.
+
 ## Contribution
 
 Thanks maoqiuyun @Ekohe, who helped me to work on this plugin.
