@@ -1,5 +1,5 @@
 /*
-simple_clone v0.6
+simple_clone v0.6.1
 Requires jQuery version: >= 1.3.0
 
 Copyright (c) 2011-2013 Jimmy Huang
@@ -120,8 +120,8 @@ $.fn.simple_clone = function(custom_option){
   $.fn.regenerate_names = function(number){
     $(this).find("input, select").each(function(){
       var old_name = $(this).attr("name");
-      var old_number = old_name.match(/.*\[(\d+)\]/)[1];  // find the last match
-      var old_number_index = old_name.lastIndexOf(old_number);
+      var old_number = old_name.match(/.*?\[(\d+)\]/)[1];  // find the first number match
+      var old_number_index = old_name.indexOf(old_number);
       var new_name = old_name.substring(0,old_number_index) + number + old_name.substring(old_number_index+1);
       $(this).attr("name", new_name);
     });

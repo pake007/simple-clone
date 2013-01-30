@@ -1,0 +1,6 @@
+=== 0.6.1 / 2013-01-30
+
+Bug fixes:
+
+* regenerate_names function, use regexp lazy match instead of greedy match, ensure that the first matched number must be the index.
+(consider 'user[projects][1][2]', we should find the first number 1 as the index, because number 2 may be the attribute)
