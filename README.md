@@ -51,6 +51,15 @@ Option :nested can allow you to build nested form, default is false. Example:
       });
 
 This will generate the input name like 'user[projects][0][name]', 'user[projects][1][name]' after you doing clone operation, which is useful for nested form with the has_many relationship.
+
+Option :start can specify the start index of nested group, for the above example, if write:
+
+      $('.project_group').simple_clone({
+        nested: true,
+        start: 1
+      });
+
+The generated input will be 'user[projects][1][name]', 'user[projects][2][name]'.
       
 ### Customize
 Simple-clone provides a very simple css, you can easily customize youself, like setting the img for the '+' and '-' button.
