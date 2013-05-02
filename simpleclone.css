@@ -10,6 +10,9 @@
   cursor: pointer;
   padding: 0 0.5em;
 }
+.simple_wrapper .simple_plus.block, .simple_wrapper .simple_minus.block {
+  clear: left;
+}
 .simple_wrapper .left {
   float: left;
 }

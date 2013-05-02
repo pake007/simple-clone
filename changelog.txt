@@ -1,3 +1,10 @@
+=== 0.6.2 / 2013-05-02
+
+New feature:
+
+* Add 'plus_icon_style' and 'minus_icon_style' options, which control the display style of the plus and minus icons
+* Add 'plus_text' and 'minus_text' options, which specify the text of plus and minus icons
+
 === 0.6.1 / 2013-01-30
 
 Bug fixes:

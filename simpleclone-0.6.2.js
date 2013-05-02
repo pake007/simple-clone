@@ -1,5 +1,5 @@
 /*
-simple_clone v0.6.1
+simple_clone v0.6.2
 Requires jQuery version: >= 1.3.0
 
 Copyright (c) 2011-2013 Jimmy Huang
@@ -33,12 +33,14 @@ $.fn.simple_clone = function(custom_option){
   var option = custom_option || {};
 
   var e = $(this);
-  e.addClass("left")
-  var out_wrapper = "<div class='outer_simple_wrapper'></div>"
-  var wrapper = "<div class='simple_wrapper'></div>"
-  var plus = "<span class='simple_plus'>+</span>"
-  var minus = "<span class='simple_minus'>-</span>"
+  e.addClass("left");
+  var out_wrapper = "<div class='outer_simple_wrapper'></div>";
+  var wrapper = "<div class='simple_wrapper'></div>";
   var clear = "<div class='simple_clear'></div>";
+  var plus = "<span class='simple_plus" + (option.plus_icon_style == 'block' ? " block" : "") + "'>" 
+             + (option.plus_text || '+') + "</span>";
+  var minus = "<span class='simple_minus" +  (option.minus_icon_style == 'block' ? " block" : "") + "'>" 
+             + (option.minus_text || '-') + "</span>";
 
   // ------------  case 1: if have already multiple groups
   if(e.length > 1) {
