@@ -65,6 +65,7 @@ Option :plus_icon_style and :minus_icon_style, can control the display style of 
 
 Option :plus_text and :minus_text, specify the text of plus and minus icons instead of '+' and '-'
 
+Option :limit, which takes a number value, specify the maximum clones in the group.
       
 ### Customize
 Simple-clone provides a very simple css, you can easily customize youself, like setting the img for the '+' and '-' button.

@@ -1,5 +1,5 @@
 /*
-simple_clone v0.6.2
+simple_clone v0.6.3
 Requires jQuery version: >= 1.3.0
 
 Copyright (c) 2011-2013 Jimmy Huang
@@ -147,6 +147,13 @@ $.fn.simple_clone = function(custom_option){
     // deal with '-' and '+' button
     var plus_button = last_wrapper.find(".simple_plus");
 
+    // stop adding if reach the limit number of clones
+    if(option.limit && option.limit > 0) {
+      if(wrapper_count >= option.limit) {
+        return false;
+      }
+    }
+
     // if has '-' button, just remove '+' button; else change the '+' to '-' button (first wrapper)
     if(last_wrapper.find(".simple_minus").length > 0){
       plus_button.remove();
@@ -175,12 +182,22 @@ $.fn.simple_clone = function(custom_option){
     // generate new label for cloned_wrapper
     cloned_wrapper.regenerate_label(current_wrapper_count);
 
+    var new_plus_button = cloned_wrapper.find(".simple_plus");
+
     // clear some extra elements (eg: error messages)
-    cloned_wrapper.find(".simple_plus").nextAll().each(function(){
+    new_plus_button.nextAll().each(function(){
       if(!$(this).hasClass("simple_clear")){
         $(this).remove();
       };
-    })
+    });
+    new_plus_button.parent().find("input").siblings().remove();
+
+    // remove the last plus button if reach the limit number of clones
+    if(option.limit && option.limit > 0) {
+      if(current_wrapper_count == option.limit) {
+        new_plus_button.hide();
+      }
+    }
   });
 
   // ---------------------------- '-' button event ----------------------------------------------------------
@@ -202,6 +219,7 @@ $.fn.simple_clone = function(custom_option){
       if(need_clone_plus_button == true) {
         last_wrapper.find(".simple_minus").after(plus);
       }
+      last_wrapper.find(".simple_plus").show();
     } else {
       // if only one wrapper remaining
       if(option.canBeEmpty) {
